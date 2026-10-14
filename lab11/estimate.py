@@ -14,6 +14,10 @@ def wilson_ci(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
     upper bound > 0) where the plain normal interval collapses to [0, 0]. Return (0, 1) for n = 0."""
     if n <= 0:
         return 0.0, 1.0
+    if k <= 0:
+        return 0.0, (z * z) / (n + z * z)
+    if k >= n:
+        return n / (n + z * z), 1.0
     p = k / n
     z2 = z * z
     denom = 1.0 + z2 / n
