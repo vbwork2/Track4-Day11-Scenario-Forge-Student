@@ -39,6 +39,8 @@ Bảng: với từng kiểu và từng seed trong `estimate.json`, ghi `p`, `hit
 
 Ba seed không ổn định hoàn toàn; bus seed 1 và crosswalk seed 0 có `top_share > .5`, nghĩa là một mẫu chi phối trọng số. Các số bus bao quanh MC 1.33e-3 nhưng dao động mạnh; IS không đồng thuận về crosswalk. Mode không hit có `upper_zero_hits=3/(0.2·600)=.025`, không phải xác suất bằng 0. Ngân sách IS 16,800 mẫu, gấp 5.6 lần MC 3,000; `other` lấy từ MC (0 hit/3000, upper .001279), không săn riêng vì lab chỉ nhắm bốn kiểu có score chuyên biệt (`estimate.json: seeds, budget, other`).
 
+CI IS là xấp xỉ chuẩn từ SE, không phải chứng nhận chắc chắn khi trọng số suy biến. Tổng ba seed lần lượt khoảng 2.05e-4, 1.60e-3 và 1.85e-4 (`evidence/estimate.json: seeds[*].total`); dùng trung vị khoảng 2.05e-4 thì MC cần khoảng 96/p ≈ 468,000 mẫu để nhắm ±20%, so với budget IS 16,800. Đây là so sánh mục tiêu lý thuyết, không khẳng định IS hiện tại đã đạt sai số ±20%.
+
 ## 5. Các kiểu thất bại (bước C2 + 3D)
 
 Mỗi kiểu bạn tìm thấy: một ảnh chụp trình xem 3D (chương 9) ở đúng lúc va chạm, và một câu mô tả chuỗi sự kiện (ai thấy gì, ai chờ gì). Kiểu nào cuộc săn **không** tìm thấy, và bạn tin điều đó ở mức nào? Nếu chỉ chạy **một** cuộc săn chung cho mọi kiểu thì điều gì xảy ra (gợi ý: `hunt.json: found` của từng cuộc săn)?
@@ -50,6 +52,8 @@ Mỗi kiểu bạn tìm thấy: một ảnh chụp trình xem 3D (chương 9) �
 `fix.json`: policy được chọn, `fail` và `fail_hi` trên TRAIN, trên TEST (`fail_hi_seen` và `fail_hi`), và của policy gốc trên TEST; vì sao `fail_hi` của bản sửa có thể lớn hơn `fail` của policy gốc dù bản sửa tốt hơn thật? quãng đường và số lần phanh gấp. Một ảnh chụp 3D có **bóng mờ** (policy gốc) cho một kịch bản mà bản sửa tránh được. Có núm chỉnh nào "nghe thì an toàn hơn" nhưng thực tế làm tăng thất bại? Giải thích bằng cách thế giới phản ứng lại.
 
 `fix.json: chosen.policy = {cutinLat: 3.0}`. TRAIN: fail=2.17e-7, fail_hi=4.56e-7, quãng đường 217.50 m, phanh gấp trung bình 7.64 frame. TEST: bản chọn fail=3.55e-6, fail_hi_seen=9.40e-6, fail_hi=0.03879; bus_bypass unseen cộng upper_zero_hits=0.0375. Baseline TEST: fail=2.17e-4, fail_hi_seen=3.87e-4, fail_hi=0.001666; quãng đường 216.90 m, phanh gấp 7.90 frame. Cận bản chọn lớn hơn vì dữ liệu chưa thấy bus_bypass, không chứng minh bản đó nguy hiểm hơn; point estimate thấp hơn nhưng chưa được chứng nhận. Trong `viewer.json` B-01, baseline chạm C2 lúc 12.75 s, policy chọn tránh được; dùng đây làm cảnh bóng mờ thủ công. Tăng `cutinLat` làm planner coi xe ở làn kề là xe trước sớm hơn: có thể giảm cắt ngang nhưng phanh sớm làm thay đổi khoảng cách với xe bám đuôi. TEST không ghi nhận `other` crash (0/3000, upper 0.001279), nên đây là cơ chế cần kiểm tra, không phải lỗi mới đã quan sát. Ảnh base-vs-fix chưa chụp được do viewer bị chặn.
+
+Trên TEST, bản chọn đi trung bình 216.826 m và phanh gấp 7.446 frame/chuyến, so với baseline 216.900 m và 7.901 frame/chuyến; giảm quãng đường khoảng 0.034%, trong giới hạn 5% (`evidence/fix.json: chosen_test.progress, chosen_test.harsh, baseline_test.progress, baseline_test.harsh`). Policy được chọn từ TRAIN; TEST chỉ dùng đánh giá sau chọn.
 
 ## 7. Từ mô phỏng ra đường thật
 
@@ -70,7 +74,7 @@ Con số này chỉ áp dụng cho một hình học phố và xe buýt cố đ�
 - **Giả định:** `hazard.json: space` quét x=[202,211] m, v=[2.8,3.3] m/s, t0=[0,0.4] s, đều trong giới hạn studio. Exposure 0.01 là giả định phân tích 1 lần/100 chuyến 24 giây, không phải tần suất thực đo; `hazard.json: why` ghi rõ căn cứ và giới hạn.
 - **Kết quả**, theo `mine.json`:
   - `mine.json: exact` ghi W2b–H0 tiếp xúc lúc 4.9 s, không phải ego; trong sweep có 1,497/1,500 khả thi (`accepted=0.998`). Base: 2 va chạm ego, `unattributed=2`, `avoidable=unavoidable=low_speed=0`. Policy chọn: 0 va chạm ego, `unattributed=avoidable=unavoidable=low_speed=0`. Không có va chạm nào được quy cho hazard; `avoidable_foreknown=0` ở cả hai (`mine.json: baseline, chosen`).
-  - Với mỗi policy, P(lỗi planner | rắc rối) là 0/1,497; Wilson 95% [0, 0.00256]. Đây là cận trên hữu ích, không phải khẳng định xác suất thật bằng 0 (`mine.json: baseline.p, baseline.hi, chosen.p, chosen.hi`).
+  - Với mỗi policy, P(lỗi planner | rắc rối) là 0/1,497; Wilson 95% [0, 0.00256]. Đây là cận trên hữu ích, không phải khẳng định xác suất thật bằng 0 (`mine.json: baseline.p, baseline.hi, chosen.p, chosen.hi`). Oracle `avoidable` thử phanh tối đa từ lúc hazard vừa hoạt động và cảm biến nhìn thấy; `avoidable_foreknown` phanh từ khi hazard bắt đầu dù còn bị che. Phản ứng tức thì với thông tin đúng làm chuẩn này lạc quan so với planner thật; chỉ thử phanh, không đánh lái, có thể bỏ sót phương án tránh khác. Cả hai số bằng 0 nên chưa đo được tổn thất do che khuất.
   - Với exposure giả định 0.01, điểm ước lượng mỗi chuyến là 0, cận trên 2.56e-5; không có lỗi hazard để so trực tiếp với bus_bypass. MC có 4/3000 va chạm bus_bypass (`mc.json: modes.bus_bypass`).
 - **Hình:** chưa chụp được. Browser policy từ chối mở `file://` của viewer; cần mở thủ công chapter 10, nạp `hazard.json` và chụp cảnh, không dùng ảnh dựng.
 - **Bạn tự lái thì sao:** chưa thử lái trong UI vì viewer không mở được trong môi trường này.
