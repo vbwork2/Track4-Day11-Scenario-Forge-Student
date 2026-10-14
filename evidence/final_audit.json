@@ -1,0 +1,55 @@
+{
+  "format": "lab11-final-audit/1",
+  "mssv": "202603012",
+  "town": "D",
+  "quick": false,
+  "tests": {
+    "passed": 41,
+    "log": "evidence/final_tests.txt",
+    "node_parity_included": true
+  },
+  "numerically_reproduced": [
+    "world",
+    "replay",
+    "mc",
+    "hunt",
+    "cloud",
+    "estimate",
+    "fix",
+    "mine",
+    "viewer"
+  ],
+  "protected_files_unchanged": true,
+  "original_report_headings_preserved": true,
+  "hazard_schema_physics_and_exact_replay": true,
+  "hazard_accepted": 0.998,
+  "viewer_runs": 11,
+  "viewer_cloud_rows": 6000,
+  "remaining_manual_steps": [
+    "Viewer screenshots for found modes and baseline/fix comparison",
+    "Open hazard in chapter 10 and capture its real scene",
+    "Optional manual driving comparison"
+  ],
+  "sha256": {
+    "REPORT.md": "0059cc74f4875f5ea0fb3cce5aec7087aa8ba58aa5fa24fe9289f04d0f21ba05",
+    "hazard.json": "fca5b1876fd57dc6ab3c1b500486efe044808d4f186a3c24d7a215312dd2fc7d",
+    "lab11/__init__.py": "aafef1754e35ba1e73bfc32f743d409954f038738dac8bff2daa66fccac09adc",
+    "lab11/estimate.py": "1ba4973b5dbca1ead892022438bf37a7eb3c9dd44d526cdb8a44495051a35e86",
+    "lab11/feasible.py": "11fe32c8870d645db6e2a8fae84998dab0e2f193adacaaac8e4c05726997190f",
+    "lab11/metrics.py": "25b1843ccde664638df8dd5418c90fa52385511e39fcc3f9445f032bb026a0c1",
+    "lab11/modes.py": "a252c62a98955f076604de7a5896f671695c0159705e44673acba7affec82f1a",
+    "lab11/policy.py": "32ee8edfc216e3fe673ebe3934e572077133a14c9c9608fd192914e6853ee106",
+    "lab11/search.py": "b69d154a33c13062704f53cc166c60a5c49047e7cb763ac36c6fc6c11998c58c",
+    "evidence/world.json": "b966d71f827e7e3b32b38499a16c82f66fdbf8d82991fb624bbd93cd9029bb5a",
+    "evidence/replay.json": "542257732e5ffccfd50660881638aa42a8792bc8a22a7c2a025a7c60f0eae853",
+    "evidence/mc.json": "55fe8e702beebecb096b515969b82dec5162be3b5c00a979bd585248ca0f08cb",
+    "evidence/hunt.json": "98af2d5a0da07a3bfb67aa9cbce57866ff80427ae52580c608ab3f47b4b5dee5",
+    "evidence/cloud.json": "829efda74197017bb897bb1620b477d5b95bc47b9d010b3751e2cfa660e4d9c9",
+    "evidence/estimate.json": "d0a5aa92e73ec34ee111487a326d0293f9b34b8e7a6e12b51efefd8289614399",
+    "evidence/fix.json": "33c7965a8eca575a3af646aef0ca1aca4a2dd483483c1a12a2cf19f072719887",
+    "evidence/mine.json": "cf840a8e2712b67d358ce7d7baf99db405908ea0b799ff33f35ef30a9229336b",
+    "evidence/viewer.json": "65a0f07c0d7c8ec13dd7f4900818b5b9b824c24b55fd5b65d9398f9827d6aac4",
+    "evidence/meta.json": "90356e3190b8eb729bfb8bd9378e90f43973679a9c053d2b269fc3323b8bee66",
+    "evidence/final_tests.txt": "b19847f46e9d452884177c3e649cf38b4b480a9e9fe944f7fae80ee881d5baf2"
+  }
+}

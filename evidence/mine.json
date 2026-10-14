@@ -136,7 +136,7 @@
   "mssv": "202603012",
   "town": "D",
   "quick": false,
-  "step": "mine",
+  "step": "all",
   "salted": false,
   "budgets": {
    "replay_n": 400,
