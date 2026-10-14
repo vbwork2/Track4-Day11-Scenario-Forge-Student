@@ -30,8 +30,8 @@ def log_weights(Z, Bn, nat: space.Natural, prop: dict, beta: float = 0.2) -> np.
     Use np.logaddexp so a weight of 1e-30 does not underflow to 0."""
     logp = nat.logpdf(Z, Bn)
     logq_cem = proposal_logpdf(prop, Z, Bn)
-    with np.errstate(divide="ignore"):
-        logq = np.logaddexp(math.log1p(-beta) + logq_cem, math.log(beta) + logp)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        logq = np.logaddexp(np.log1p(-beta) + logq_cem, np.log(beta) + logp)
     return logp - logq
 
 
