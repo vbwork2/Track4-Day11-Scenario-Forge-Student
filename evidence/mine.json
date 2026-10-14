@@ -1,0 +1,153 @@
+{
+ "file": "hazard.json",
+ "hazards": [
+  {
+   "x": 206.0,
+   "side": "S",
+   "v": 3.0,
+   "t0": 0.0,
+   "trig": null,
+   "type": "ped"
+  }
+ ],
+ "space": {
+  "h0_x": [
+   202.0,
+   211.0
+  ],
+  "h0_v": [
+   2.8,
+   3.3
+  ],
+  "h0_t0": [
+   0.0,
+   0.4
+  ]
+ },
+ "world": "town",
+ "exposure": 0.01,
+ "why": "Kịch bản giả định người đi bộ băng ngang giữa đoạn đường gần lối vào xưởng, cách xe ta ban đầu khoảng 26 m; khoảng x [202, 211] m quét vị trí quanh điểm này để kiểm tra sai khác thời điểm gặp nhau. v [2.8, 3.3] m/s là dải đi nhanh/chạy ngắn, vẫn dưới giới hạn 3.5 m/s của studio; t0 [0, 0.4] s biểu diễn thời điểm xuất hiện gần lúc xe bắt đầu hành trình. Đây là dải thiết kế để thử độ nhạy, không phải số đo thực nghiệm. Một chuyến được định nghĩa là lượt chạy 24 giây của mô hình; do repo không có dữ liệu tần suất người băng ngang giữa đoạn, exposure=0.01 là giả định phân tích (1 lượt trong 100 chuyến), không phải tần suất quan sát. Cần thay bằng đếm video giao thông tại các lối vào xưởng trước khi dùng như xác suất ngoài đời.",
+ "exact": {
+  "planner": [
+   [
+    "W2b",
+    "H0",
+    4.9
+   ]
+  ]
+ },
+ "infeasible": 3,
+ "accepted": 0.998,
+ "conditional_on": "your town's traffic",
+ "baseline": {
+  "n": 1497,
+  "crashes": 2,
+  "avoidable": 0,
+  "unavoidable": 0,
+  "unattributed": 2,
+  "low_speed": 0,
+  "avoidable_foreknown": 0,
+  "overlap_at_start": 0,
+  "by_hazard": {
+   "unattributed": 2
+  },
+  "examples": [
+   {
+    "params": {
+     "cutT0": 9.337509610923263,
+     "cutDur": 6.263413909127226,
+     "cutV": 15.104451790625207,
+     "cutDs": 6.643355451780362,
+     "pedT0": 14.19899228803503,
+     "pedV": 1.455721265041275,
+     "busGo": 18.131189281447213,
+     "tgT": 1.2124200370248215,
+     "cutGap": 8.588747602344784,
+     "pedGap": 4.664081686581768,
+     "mu": 0.8,
+     "pedLook": 1,
+     "cutBrake": 0.0,
+     "civil": true,
+     "h0_t0": 0.008056404323014776,
+     "h0_v": 3.00989808370493,
+     "h0_x": 204.83514957322566
+    },
+    "kind": "unattributed",
+    "low_speed": false,
+    "other": "C2",
+    "t": 12.75,
+    "v_ego": 2.0378952026367188,
+    "fire_t": null,
+    "brake_t": null
+   },
+   {
+    "params": {
+     "cutT0": 10.084876103146776,
+     "cutDur": 4.00668252035849,
+     "cutV": 15.186469158471885,
+     "cutDs": -9.307059302285442,
+     "pedT0": 15.184268582830038,
+     "pedV": 1.5039406090209362,
+     "busGo": 16.45364101222441,
+     "tgT": 0.8394786976460753,
+     "cutGap": 4.104877035026427,
+     "pedGap": 4.86301241556564,
+     "mu": 0.8,
+     "pedLook": 1,
+     "cutBrake": 1.5355162329811518,
+     "civil": true,
+     "h0_t0": 0.32361696307643595,
+     "h0_v": 2.9920356954398137,
+     "h0_x": 203.98071453385538
+    },
+    "kind": "unattributed",
+    "low_speed": false,
+    "other": "C2",
+    "t": 12.45,
+    "v_ego": 2.8343889713287354,
+    "fire_t": null,
+    "brake_t": null
+   }
+  ],
+  "p": 0.0,
+  "lo": 0.0,
+  "hi": 0.0025596305432898448,
+  "per_trip": 0.0,
+  "per_trip_hi": 2.559630543289845e-05
+ },
+ "chosen": {
+  "n": 1497,
+  "crashes": 0,
+  "avoidable": 0,
+  "unavoidable": 0,
+  "unattributed": 0,
+  "low_speed": 0,
+  "avoidable_foreknown": 0,
+  "overlap_at_start": 0,
+  "by_hazard": {},
+  "examples": [],
+  "p": 0.0,
+  "lo": 0.0,
+  "hi": 0.0025596305432898448,
+  "per_trip": 0.0,
+  "per_trip_hi": 2.559630543289845e-05
+ },
+ "_run": {
+  "mssv": "202603012",
+  "town": "D",
+  "quick": false,
+  "step": "mine",
+  "salted": false,
+  "budgets": {
+   "replay_n": 400,
+   "mc_n": 3000,
+   "iters": 8,
+   "per_iter": 300,
+   "final_n": 600,
+   "seeds": 3,
+   "fix_n": 400,
+   "progress_n": 256,
+   "mine_n": 1500
+  }
+ }
+}

@@ -61,13 +61,13 @@ Con số này chỉ áp dụng cho một hình học phố và xe buýt cố đ�
 
 ## 9. Rắc rối của bạn (bước G + chương 10)
 
-- **Rắc rối:** bạn dựng gì, và ngoài đời nó giống tình huống nào.
-- **Căn cứ:** vì sao bạn nghĩ planner sẽ xử lý kém.
-- **Giả định:** `space` và `exposure` lấy từ đâu (`hazard.json: why`).
+- **Rắc rối:** người đi bộ băng ngang giữa đoạn gần lối vào xưởng tại x≈206 m, từ lề nam, tốc độ 3.0 m/s; tương tự người chạy qua đường không đúng vạch.
+- **Căn cứ:** planner có logic riêng cho vạch qua đường, nên tôi dự đoán người băng ngang giữa đoạn có thể xuất hiện muộn; kết quả sweep chưa tìm thấy va chạm ego quy cho hazard.
+- **Giả định:** `hazard.json: space` quét x=[202,211] m, v=[2.8,3.3] m/s, t0=[0,0.4] s, đều trong giới hạn studio. Exposure 0.01 là giả định phân tích 1 lần/100 chuyến 24 giây, không phải tần suất thực đo; `hazard.json: why` ghi rõ căn cứ và giới hạn.
 - **Kết quả**, theo `mine.json`:
-  - số va chạm `avoidable` (tránh được bằng phanh hết cỡ, biết trước), `unavoidable`, `unattributed`, và `low_speed`, với policy gốc và với policy bạn chọn; `accepted` (bao nhiêu phần `space` của bạn là khả thi);
-  - P(lỗi planner | rắc rối) kèm khoảng Wilson;
-  - tần suất mỗi chuyến, đặt cạnh tần suất lách xe buýt của bạn.
-- **Hình:** một ảnh chương 9 hoặc 10 ở lúc va chạm.
-- **Bạn tự lái thì sao:** nếu bạn đã thử lái, bạn tránh được không, và bạn làm gì khác planner?
-- **Cách sửa:** núm chỉnh nào sửa được rắc rối này? Nếu không núm nào sửa được, planner cần thêm **logic gì** (mô tả, không cần code)?
+  - `mine.json: exact` ghi W2b–H0 tiếp xúc lúc 4.9 s, không phải ego; trong sweep có 1,497/1,500 khả thi (`accepted=0.998`). Base: 2 va chạm ego, cả 2 `unattributed`; `avoidable=unavoidable=low_speed=0`. Policy chọn: không va chạm ego. Không có va chạm nào được quy cho hazard; `avoidable_foreknown=0` ở cả hai (`mine.json: baseline, chosen`).
+  - P(lỗi planner | rắc rối) ước lượng 0/1,497; Wilson 95% [0, 0.00256]. Đây là cận trên hữu ích, không phải khẳng định xác suất thật bằng 0 (`mine.json: baseline.p, baseline.hi`).
+  - Với exposure giả định 0.01, điểm ước lượng mỗi chuyến là 0, cận trên 2.56e-5; không có lỗi hazard để so trực tiếp với bus_bypass. MC có 4/3000 va chạm bus_bypass (`mc.json: modes.bus_bypass`).
+- **Hình:** chưa chụp được. Browser policy từ chối mở `file://` của viewer; cần mở thủ công chapter 10, nạp `hazard.json` và chụp cảnh, không dùng ảnh dựng.
+- **Bạn tự lái thì sao:** chưa thử lái trong UI vì viewer không mở được trong môi trường này.
+- **Cách sửa:** không có lỗi được quan sát để quy một núm chỉnh cụ thể. Để bao quát hơn, planner nên kiểm tra mọi người đi bộ ngoài vạch bằng vùng dừng theo khoảng cách/tốc độ đóng, thay vì chỉ áp dụng dự đoán riêng quanh vạch cố định.
