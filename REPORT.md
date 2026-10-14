@@ -69,8 +69,8 @@ Con số này chỉ áp dụng cho một hình học phố và xe buýt cố đ�
 - **Căn cứ:** planner có logic riêng cho vạch qua đường, nên tôi dự đoán người băng ngang giữa đoạn có thể xuất hiện muộn; kết quả sweep chưa tìm thấy va chạm ego quy cho hazard.
 - **Giả định:** `hazard.json: space` quét x=[202,211] m, v=[2.8,3.3] m/s, t0=[0,0.4] s, đều trong giới hạn studio. Exposure 0.01 là giả định phân tích 1 lần/100 chuyến 24 giây, không phải tần suất thực đo; `hazard.json: why` ghi rõ căn cứ và giới hạn.
 - **Kết quả**, theo `mine.json`:
-  - `mine.json: exact` ghi W2b–H0 tiếp xúc lúc 4.9 s, không phải ego; trong sweep có 1,497/1,500 khả thi (`accepted=0.998`). Base: 2 va chạm ego, cả 2 `unattributed`; `avoidable=unavoidable=low_speed=0`. Policy chọn: không va chạm ego. Không có va chạm nào được quy cho hazard; `avoidable_foreknown=0` ở cả hai (`mine.json: baseline, chosen`).
-  - P(lỗi planner | rắc rối) ước lượng 0/1,497; Wilson 95% [0, 0.00256]. Đây là cận trên hữu ích, không phải khẳng định xác suất thật bằng 0 (`mine.json: baseline.p, baseline.hi`).
+  - `mine.json: exact` ghi W2b–H0 tiếp xúc lúc 4.9 s, không phải ego; trong sweep có 1,497/1,500 khả thi (`accepted=0.998`). Base: 2 va chạm ego, `unattributed=2`, `avoidable=unavoidable=low_speed=0`. Policy chọn: 0 va chạm ego, `unattributed=avoidable=unavoidable=low_speed=0`. Không có va chạm nào được quy cho hazard; `avoidable_foreknown=0` ở cả hai (`mine.json: baseline, chosen`).
+  - Với mỗi policy, P(lỗi planner | rắc rối) là 0/1,497; Wilson 95% [0, 0.00256]. Đây là cận trên hữu ích, không phải khẳng định xác suất thật bằng 0 (`mine.json: baseline.p, baseline.hi, chosen.p, chosen.hi`).
   - Với exposure giả định 0.01, điểm ước lượng mỗi chuyến là 0, cận trên 2.56e-5; không có lỗi hazard để so trực tiếp với bus_bypass. MC có 4/3000 va chạm bus_bypass (`mc.json: modes.bus_bypass`).
 - **Hình:** chưa chụp được. Browser policy từ chối mở `file://` của viewer; cần mở thủ công chapter 10, nạp `hazard.json` và chụp cảnh, không dùng ảnh dựng.
 - **Bạn tự lái thì sao:** chưa thử lái trong UI vì viewer không mở được trong môi trường này.
