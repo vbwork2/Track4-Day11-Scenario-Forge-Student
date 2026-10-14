@@ -28,13 +28,21 @@
   "fix": {
    "quick": false,
    "at": "2026-10-14 20:45"
+  },
+  "mine": {
+   "quick": false,
+   "at": "2026-10-14 21:01"
+  },
+  "export": {
+   "quick": false,
+   "at": "2026-10-14 21:04"
   }
  },
  "_run": {
   "mssv": "202603012",
   "town": "D",
   "quick": false,
-  "step": "fix",
+  "step": "export",
   "salted": false,
   "budgets": {
    "replay_n": 400,

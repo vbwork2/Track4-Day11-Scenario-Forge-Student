@@ -43,9 +43,13 @@ Ba seed không ổn định hoàn toàn; bus seed 1 và crosswalk seed 0 có `to
 
 Mỗi kiểu bạn tìm thấy: một ảnh chụp trình xem 3D (chương 9) ở đúng lúc va chạm, và một câu mô tả chuỗi sự kiện (ai thấy gì, ai chờ gì). Kiểu nào cuộc săn **không** tìm thấy, và bạn tin điều đó ở mức nào? Nếu chỉ chạy **một** cuộc săn chung cho mọi kiểu thì điều gì xảy ra (gợi ý: `hunt.json: found` của từng cuộc săn)?
 
+`hunt.json: found`: có 89 bus_bypass và 49 crosswalk_block; các cuộc săn cut_in và rear_ended không tìm thấy lỗi đúng nhãn, dù có va chạm nhãn khác. `viewer.json` có ví dụ thật: B-01 ego–C2 lúc 12.75 s khi C2 đang lách quanh xe buýt và lọt vào làn; C-01 ego chắn P1 trên vạch lúc 20.75 s, người đi bộ chờ nhưng thân xe chiếm lối. Không có cơ sở kết luận mode vắng mặt khỏi thị trấn chỉ từ cuộc săn này. Săn riêng cần score tương ứng; một score chung có thể bỏ sót chặn vạch hoặc va chạm đuôi. Ảnh chưa chụp được do viewer cục bộ bị browser policy chặn; cần mở `evidence/viewer.json` trong chapter 9 và chụp thủ công tại các mốc trên.
+
 ## 6. Sửa planner (bước E + 3D)
 
 `fix.json`: policy được chọn, `fail` và `fail_hi` trên TRAIN, trên TEST (`fail_hi_seen` và `fail_hi`), và của policy gốc trên TEST; vì sao `fail_hi` của bản sửa có thể lớn hơn `fail` của policy gốc dù bản sửa tốt hơn thật? quãng đường và số lần phanh gấp. Một ảnh chụp 3D có **bóng mờ** (policy gốc) cho một kịch bản mà bản sửa tránh được. Có núm chỉnh nào "nghe thì an toàn hơn" nhưng thực tế làm tăng thất bại? Giải thích bằng cách thế giới phản ứng lại.
+
+`fix.json: chosen.policy = {cutinLat: 3.0}`. TRAIN: fail=2.17e-7, fail_hi=4.56e-7, quãng đường 217.50 m, phanh gấp trung bình 7.64 frame. TEST: bản chọn fail=3.55e-6, fail_hi_seen=9.40e-6, fail_hi=0.03879; bus_bypass unseen cộng upper_zero_hits=0.0375. Baseline TEST: fail=2.17e-4, fail_hi_seen=3.87e-4, fail_hi=0.001666; quãng đường 216.90 m, phanh gấp 7.90 frame. Cận bản chọn lớn hơn vì dữ liệu chưa thấy bus_bypass, không chứng minh bản đó nguy hiểm hơn; point estimate thấp hơn nhưng chưa được chứng nhận. Trong `viewer.json` B-01, baseline chạm C2 lúc 12.75 s, policy chọn tránh được; dùng đây làm cảnh bóng mờ thủ công. Tăng `cutinLat` làm planner coi xe ở làn kề là xe trước sớm hơn: có thể giảm cắt ngang nhưng phanh sớm làm thay đổi khoảng cách với xe bám đuôi. TEST không ghi nhận `other` crash (0/3000, upper 0.001279), nên đây là cơ chế cần kiểm tra, không phải lỗi mới đã quan sát. Ảnh base-vs-fix chưa chụp được do viewer bị chặn.
 
 ## 7. Từ mô phỏng ra đường thật
 
