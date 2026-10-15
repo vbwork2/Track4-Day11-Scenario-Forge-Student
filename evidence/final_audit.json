@@ -26,13 +26,12 @@
   "viewer_runs": 11,
   "viewer_cloud_rows": 6000,
   "remaining_manual_steps": [
-    "Viewer screenshots for found modes and baseline/fix comparison",
-    "Open hazard in chapter 10 and capture its real scene",
-    "Optional manual driving comparison"
+    "Submit archive to class portal, or push if required by class",
+    "Optional complete human driving trial"
   ],
   "sha256": {
-    "REPORT.md": "0059cc74f4875f5ea0fb3cce5aec7087aa8ba58aa5fa24fe9289f04d0f21ba05",
-    "hazard.json": "fca5b1876fd57dc6ab3c1b500486efe044808d4f186a3c24d7a215312dd2fc7d",
+    "REPORT.md": "836af8243ee82c57951100b17c7fd78ea8b3b9f0cd600def0caa30c823cdf958",
+    "hazard.json": "04264d16fe8510df2a1fd793f660936503ba88aae072717841ce558d387b8344",
     "lab11/__init__.py": "aafef1754e35ba1e73bfc32f743d409954f038738dac8bff2daa66fccac09adc",
     "lab11/estimate.py": "1ba4973b5dbca1ead892022438bf37a7eb3c9dd44d526cdb8a44495051a35e86",
     "lab11/feasible.py": "11fe32c8870d645db6e2a8fae84998dab0e2f193adacaaac8e4c05726997190f",
@@ -47,9 +46,23 @@
     "evidence/cloud.json": "829efda74197017bb897bb1620b477d5b95bc47b9d010b3751e2cfa660e4d9c9",
     "evidence/estimate.json": "d0a5aa92e73ec34ee111487a326d0293f9b34b8e7a6e12b51efefd8289614399",
     "evidence/fix.json": "33c7965a8eca575a3af646aef0ca1aca4a2dd483483c1a12a2cf19f072719887",
-    "evidence/mine.json": "cf840a8e2712b67d358ce7d7baf99db405908ea0b799ff33f35ef30a9229336b",
+    "evidence/mine.json": "eb335368a632e28c677bf8819ee9ebfe3b0ef1a8845e1d4d08babbbd3f0c087e",
     "evidence/viewer.json": "65a0f07c0d7c8ec13dd7f4900818b5b9b824c24b55fd5b65d9398f9827d6aac4",
-    "evidence/meta.json": "90356e3190b8eb729bfb8bd9378e90f43973679a9c053d2b269fc3323b8bee66",
-    "evidence/final_tests.txt": "b19847f46e9d452884177c3e649cf38b4b480a9e9fe944f7fae80ee881d5baf2"
-  }
+    "evidence/meta.json": "cb22c8632436edc1af20e5c073fef56f1f0d58c0b1921044f3d4ade231261945",
+    "evidence/final_tests.txt": "b19847f46e9d452884177c3e649cf38b4b480a9e9fe944f7fae80ee881d5baf2",
+    "FINAL_HANDOFF.md": "454445a927d40f0712e4fc9d327a715c279d9bd7da15118d15b0428adb56af8d",
+    "evidence/viewer_policy_compare.json": "3ec6298c6cd955bbb580f08e69a65a1558f3aaeadcc3b1ef11dd28f680a2c468",
+    "evidence/hazard_ui.json": "04264d16fe8510df2a1fd793f660936503ba88aae072717841ce558d387b8344",
+    "evidence/hazard_drive.json": "37f1b07950d8688f7550521e089628d901524216a07fd5539b1ab90332635e28",
+    "evidence/shots/bus_bypass.jpg": "9627fa6372c1485224f68552848572d7e888217cbd949092d76ac288b9d53191",
+    "evidence/shots/crosswalk_block.jpg": "5cf3c90b64a13f9b98266b6026f3ec32240c0fce810b99d95ce687571ada417b",
+    "evidence/shots/custom_hazard.jpg": "b8d5e4dd10b461fbfa27198ae83419ed26b2046d7bb8ae6ee0b6d9be242285e8",
+    "evidence/shots/hazard_drive.jpg": "d51cea60e372364fc40264819237d1a053240ab600feea9b4c2f59957fd5418e",
+    "evidence/shots/manifest.json": "2de9a1657f9895e16bc641e98ceb339c5a225547f0c54d68e78be124af182559",
+    "evidence/shots/policy_before_after.jpg": "07b601ffbb4d1a57917c9291322efbcad4aac023a38df79420e3ff23f789b14f"
+  },
+  "real_ui_screenshots": "evidence/shots/manifest.json",
+  "hazard_ui_opened": true,
+  "ui_driving_trial": "Partial agent UI trace only: [0,-6,-6,0], not a full human driving trial",
+  "hazard_metadata_correction": "Initial distance corrected to 246 m; geometry/ranges/exposure unchanged; mine rerun at default 1500 and export refreshed"
 }

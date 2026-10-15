@@ -26,7 +26,7 @@
  },
  "world": "town",
  "exposure": 0.01,
- "why": "Kịch bản giả định người đi bộ băng ngang giữa đoạn đường gần lối vào xưởng, cách xe ta ban đầu khoảng 26 m; khoảng x [202, 211] m quét vị trí quanh điểm này để kiểm tra sai khác thời điểm gặp nhau. v [2.8, 3.3] m/s là dải đi nhanh/chạy ngắn, vẫn dưới giới hạn 3.5 m/s của studio; t0 [0, 0.4] s biểu diễn thời điểm xuất hiện gần lúc xe bắt đầu hành trình. Đây là dải thiết kế để thử độ nhạy, không phải số đo thực nghiệm. Một chuyến được định nghĩa là lượt chạy 24 giây của mô hình; do repo không có dữ liệu tần suất người băng ngang giữa đoạn, exposure=0.01 là giả định phân tích (1 lượt trong 100 chuyến), không phải tần suất quan sát. Cần thay bằng đếm video giao thông tại các lối vào xưởng trước khi dùng như xác suất ngoài đời.",
+ "why": "Kịch bản giả định người đi bộ băng ngang giữa đoạn đường gần lối vào xưởng, tại x=206 m; ego khởi hành ở x=-40 m nên khoảng cách ban đầu là 246 m; khoảng x [202, 211] m quét vị trí quanh điểm này để kiểm tra sai khác thời điểm gặp nhau. v [2.8, 3.3] m/s là dải đi nhanh/chạy ngắn, vẫn dưới giới hạn 3.5 m/s của studio; t0 [0, 0.4] s biểu diễn thời điểm xuất hiện gần lúc xe bắt đầu hành trình. Đây là dải thiết kế để thử độ nhạy, không phải số đo thực nghiệm. Một chuyến được định nghĩa là lượt chạy 24 giây của mô hình; do repo không có dữ liệu tần suất người băng ngang giữa đoạn, exposure=0.01 là giả định phân tích (1 lượt trong 100 chuyến), không phải tần suất quan sát. Cần thay bằng đếm video giao thông tại các lối vào xưởng trước khi dùng như xác suất ngoài đời. Hazard bắt đầu trong 0-0.4 s ở phía xa, nên có thể kết thúc trước khi ego đến; zero-hit phải xét điều kiện gặp nhau, không chứng minh planner xử lý tốt một hazard xuất hiện gần xe.",
  "exact": {
   "planner": [
    [
@@ -136,7 +136,7 @@
   "mssv": "202603012",
   "town": "D",
   "quick": false,
-  "step": "all",
+  "step": "mine",
   "salted": false,
   "budgets": {
    "replay_n": 400,

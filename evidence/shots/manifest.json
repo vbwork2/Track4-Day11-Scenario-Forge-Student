@@ -1,0 +1,51 @@
+{
+  "format": "lab11-real-screenshots/1",
+  "source_url": "http://localhost:8000/viewer/",
+  "captures": [
+    {
+      "file": "evidence/shots/bus_bypass.jpg",
+      "source": "evidence/viewer.json",
+      "run": "B-01",
+      "rendered_time_seconds": 12.75,
+      "note": "Baseline ego contacts C2; ghost disabled",
+      "sha256": "9627fa6372c1485224f68552848572d7e888217cbd949092d76ac288b9d53191",
+      "bytes": 82853
+    },
+    {
+      "file": "evidence/shots/crosswalk_block.jpg",
+      "source": "evidence/viewer.json",
+      "run": "C-01",
+      "rendered_time_seconds": 20.75,
+      "note": "Baseline ego blocks P1; ghost disabled",
+      "sha256": "5cf3c90b64a13f9b98266b6026f3ec32240c0fce810b99d95ce687571ada417b",
+      "bytes": 91147
+    },
+    {
+      "file": "evidence/shots/policy_before_after.jpg",
+      "source": "evidence/viewer_policy_compare.json",
+      "run": "BF-01",
+      "rendered_time_seconds": 12.75,
+      "note": "Selected policy is primary, baseline is ghost; same B-01 params",
+      "sha256": "07b601ffbb4d1a57917c9291322efbcad4aac023a38df79420e3ff23f789b14f",
+      "bytes": 84750
+    },
+    {
+      "file": "evidence/shots/custom_hazard.jpg",
+      "source": "hazard.json",
+      "run": "H0",
+      "rendered_time_seconds": 4.9,
+      "note": "Planner scene; W2b-H0 contact, not ego; distant hazard",
+      "sha256": "b8d5e4dd10b461fbfa27198ae83419ed26b2046d7bb8ae6ee0b6d9be242285e8",
+      "bytes": 78284
+    },
+    {
+      "file": "evidence/shots/hazard_drive.jpg",
+      "source": "evidence/hazard_drive.json",
+      "run": "H0",
+      "rendered_time_seconds": 0.2,
+      "note": "Partial UI trial only; slider value 24 but rendered label 0.2; not a completed drive",
+      "sha256": "d51cea60e372364fc40264819237d1a053240ab600feea9b4c2f59957fd5418e",
+      "bytes": 79561
+    }
+  ]
+}
